@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "pixel-font";
+    src: url("./assets/VT323-Regular.ttf") format("truetype");
+  }
+
+html {
+    height: 100%;
+    overflow: hidden;
+    font-family: "pixel-font";
+}
+
+body {
+   height: 100%;
+   display: flex;
+   text-align: center;
+   background-color: black;
+}
+
+#root {
+    height: 70%;
+    width: 70%;
+    margin: auto;
+    background-image: url(./assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}

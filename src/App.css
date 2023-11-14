@@ -1,0 +1,40 @@
+
+#main-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(51, 255, 0);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+header:hover {
+    cursor: pointer;
+}
+
+header img {
+    width: 4.5rem;
+    margin-right: 0.5rem;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    color: white;
+    font-style: italic;
+    margin: 0;
+}
+
+h1 > span {
+    color: red;
+}
+
+button:hover {
+    cursor: pointer;
+}
