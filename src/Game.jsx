@@ -56,8 +56,6 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
 
     const updateHighScores = useCallback(() => {
 
-        console.log(highScore, "unmount/play again")
-
         if (score == highScore) {
             let updatedHighScores = [highScore].concat(highScores) 
                 
@@ -143,8 +141,6 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
         setHighScore(score);
         localStorage.setItem('highScore', JSON.stringify(score));          
     }
-    
-    console.log(highScore, "regular")
 
     if (loading) {
         return(
