@@ -58,16 +58,20 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
 
         console.log(highScore, "unmount/play again")
 
-        let updatedHighScores = [highScore].concat(highScores) 
-            
-        updatedHighScores.sort((a, b) => b - a);
+        if (score == highScore) {
+            let updatedHighScores = [highScore].concat(highScores) 
+                
+            updatedHighScores.sort((a, b) => b - a);
 
-        if (updatedHighScores.length > 5) {
-            updatedHighScores.pop();
+            if (updatedHighScores.length > 5) {
+                updatedHighScores.pop();
+            }
+
+            setHighScores(updatedHighScores)
+            localStorage.setItem('highScores', JSON.stringify(updatedHighScores))
         }
 
-        setHighScores(updatedHighScores)
-        localStorage.setItem('highScores', JSON.stringify(updatedHighScores))
+            
     }, [highScore, highScores]) 
 
     function checkIfRepeated(event) {
