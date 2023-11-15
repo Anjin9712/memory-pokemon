@@ -9,7 +9,7 @@ import HighScores from './HighScores';
 function App() {
 
 
-  useEffect(() => console.log("Puto el que lo lea"))
+  useEffect(() => console.log("Puto el que lo lea"), [])
 
   const [currentComponent, setCurrentComponent] = useState("menu");
   const [opponent, setOpponent] = useState("Braider Andres");
