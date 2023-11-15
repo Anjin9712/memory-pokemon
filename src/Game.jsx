@@ -55,9 +55,13 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
     }, [playAgain])
 
     const updateHighScores = useCallback(() => {
+        const isTopFive = [...highScores].some(highScore => score > highScore)
 
-        if (score == highScore) {
-            let updatedHighScores = [highScore].concat(highScores) 
+        const isUnique = [...highScores].every(highScore => score != highScore)
+        
+
+        if (isTopFive && isUnique || [...highScores].length === 0) {
+            let updatedHighScores = [score].concat(highScores) 
                 
             updatedHighScores.sort((a, b) => b - a);
 
@@ -67,30 +71,23 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
 
             setHighScores(updatedHighScores)
             localStorage.setItem('highScores', JSON.stringify(updatedHighScores))
-        }
+        } 
 
-            
-    }, [highScore, highScores]) 
+        }, [highScores, setHighScores, score])
 
     function checkIfRepeated(event) {
 
         const id = event.currentTarget.id;
     
         if (randomCards[id].clicked) {
+            updateHighScores()
             const gameOverDialog = document.querySelector("#gameOverDialog");
             gameOverDialog.showModal()
-            updateHighScores()
-
-        } else if (score + 1 === opponents[opponent]) {
-            setScore(prevRound => prevRound + 1);
-            const youWinDialog = document.querySelector("#youWinDialog");
-            youWinDialog.showModal()
-            updateHighScores()
+            
         } else {
             const updatedCard = {...randomCards[id], clicked: true};
             setCards(prevInfo => ({...prevInfo, [id]: updatedCard}));
             setScore(prevRound => prevRound + 1);
-            
         }
     }
 
@@ -141,6 +138,15 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
         setHighScore(score);
         localStorage.setItem('highScore', JSON.stringify(score));          
     }
+
+    useEffect(() =>{
+        if (score === opponents[opponent]) {
+            updateHighScores();
+            const youWinDialog = document.querySelector("#youWinDialog");
+            youWinDialog.showModal();
+        }
+    }, [score])
+    
 
     if (loading) {
         return(
