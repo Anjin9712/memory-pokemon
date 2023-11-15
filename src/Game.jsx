@@ -60,7 +60,7 @@ export default function Game({opponent, backToMenu, highScore, setHighScore, hig
         const isUnique = [...highScores].every(highScore => score != highScore)
         
 
-        if (isTopFive && isUnique || [...highScores].length === 0) {
+        if (isTopFive && isUnique || [...highScores].length === 0 || [...highScores].length < 5) {
             let updatedHighScores = [score].concat(highScores) 
                 
             updatedHighScores.sort((a, b) => b - a);
